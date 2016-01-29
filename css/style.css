@@ -1,0 +1,159 @@
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(-360deg);
+    }
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #222;
+}
+
+.current{
+    padding: 10px 0;
+}
+
+.current:after {
+    content: ' ';
+    position: absolute;
+    border: solid 30px transparent;
+    border-top: solid 0px transparent;
+    border-width: 30px;
+    left: 50%;
+    margin-left: -30px;
+    border-color: #000 transparent transparent transparent;
+}
+
+.current a {
+    font-size: 2em;
+    cursor: default;
+}
+
+.navbar-nav>li{
+    float: none;
+}
+
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 2em;
+    padding: 20px 0 20px;
+    margin: 10px 0 20px;
+}
+
+.navbar-inverse {
+    border: none;
+    background-color: #000;
+}
+
+.navbar-inverse .row::after{
+    content: ' ';
+    width: 300px;
+    height: 100px;
+    background-size: cover;
+    background-image: url('../img/arrow.png');
+}
+
+.navbar-inverse .navbar-nav>li>a{
+    color: #eee;
+}
+
+.rotating {
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: .9s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+
+.tile {
+    padding: 50px 25px 50px 25px;
+    border: none;
+    height: 20em;
+}
+
+.tile-green {
+    background-color: #54d476;
+}
+
+.tile-blue {
+    padding-top: 40px;
+    background-color: #5470d4;
+}
+
+.tile-red {
+    background-color: #d45057;
+}
+
+.flame {
+    height: 4em;
+    width: 3em;
+    margin-right: auto;
+    margin-left: auto;
+    background-image: url('../img/flame.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.no-flame {
+    height: 4em;
+    width: 3em;
+    margin-right: auto;
+    margin-left: auto;
+    background-image: url('../img/flame-grey.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.temp-text{
+    font-size: 3em;
+    color: #eee;
+}
+
+.outside-fan {
+    margin-top: 20px;
+    background-image: url('../img/thingyoutsidefan.png');
+    height: 6em;
+    width: 6em;
+    background-size: cover;
+    z-index: 100;
+    position: relative;
+}
+
+.inside-fan {
+    background-image: url('../img/fan.png');
+    position: absolute;
+    left: .5em;
+    top: .5em;
+    height: 5em;
+    width: 5em;
+    background-size: cover;
+    z-index: 3000;
+}
+
+button.btn.btn-primary.settings{
+    border: none;
+    background-color: #59bbd4;
+    border-radius: 0;
+    padding: 15px 20px;
+    cursor: pointer;
+}
+
+button.btn.btn-primary.settings i {
+    color: #eee;
+}
+
+.fields{
+    background: #59bbd4;
+}
+
+#burningSettings {
+
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

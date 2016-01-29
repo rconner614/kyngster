@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://localhost:63342/kyngster/index.html -->
+<html lang="en" ng-app="myApp" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+	<link rel="stylesheet" href="./index_files/bootstrap.min.css">
+	<link rel="stylesheet" href="./index_files/style.css">
+	<link href="./index_files/css" rel="stylesheet" type="text/css">
+<style type="text/css"></style></head>
+<body ng-controller="myController" class="ng-scope">
+	<div class="row">
+		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top text-center">
+			<nav id="main_navbar text-center">
+				<ul class="nav navbar-nav" style="float: none; margin-left: auto; margin-right: auto">
+					<li class="current">
+						<!-- Highlighted menu for current page -->
+						<a href="" id="homenav">KSC</a>
+					</li>
+				</ul>
+			</nav>
+			<!--<div class="container-fluid">-->
+				<!--<div class="navbar-brand" style="float: none;">-->
+					<!--KSC-->
+				<!--</div>-->
+			<!--</div>-->
+		</nav>
+	</div>
+
+	<div style="margin-top: 50px">
+		<div class="row">
+			<div class="col-lg-offset-4 col-lg-2 tile text-center tile-green" ng-class="{&#39;tile-green&#39;: isHeating, &#39;tile-red&#39;: !isHeating}">
+				<div class="outside-fan" style="margin-left: auto; margin-right: auto">
+					<div ng-class="{&#39;rotating&#39;: isHeating}" class="inside-fan rotating"></div>
+				</div><br><br>
+				<button class="btn btn-lg btn-default btn-danger" ng-click="kill = !kill; isHeating = false;" ng-show="!kill">KILL</button>
+				<button class="btn btn-lg btn-default btn-primary ng-hide" ng-click="kill = !kill; isHeating = true;" ng-show="kill">RESET</button>
+			</div>
+			<div class="col-lg-2 tile tile-blue text-center">
+				<div class="round-progress-wrapper ng-isolate-scope" round-progress="" max="250" current="current" color="#72CDD4" bgcolor="#222" radius="100" stroke="10" semi="false" rounded="false" clockwise="false" responsive="true" duration="800" animation="easeInOutQuart" animation-delay="0" style="width: 100%; position: relative; padding-bottom: 100%;">
+<svg class="round-progress" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="top: 0px; left: 0px; position: absolute; width: 100%; height: 100%; overflow: hidden;">
+<circle fill="none" cx="100" cy="100" r="95" style="stroke: rgb(34, 34, 34); stroke-width: 10px;"></circle>
+<path fill="none" transform="scale(-1, 1) translate(-200 0)" d="M 87.61982416042305 194.1898680654196 A 95 95 0 1 0 100 5" style="stroke: rgb(114, 205, 212); stroke-width: 10px; stroke-linecap: butt;"></path>
+<g ng-transclude="">
+
+				</g>
+</svg>
+</div> <br>
+				<div class="temp" style="position: absolute; top: 50%; bottom: auto; left: 50%; transform: translateY(-50%) translateX(-50%);"><span class="temp-text ng-binding">130.2</span> <div ng-class="{&#39;flame&#39;: isHeating, &#39;no-flame&#39;: !isHeating}" class="flame"></div></div>
+			</div>
+		</div>
+	</div>
+
+
+<footer class="text-center">
+	<p class="ng-binding">Kyle Curren © 2016</p>
+</footer>
+
+
+<script src="./index_files/jquery-2.1.1.min.js"></script>
+<script src="./index_files/bootstrap.min.js"></script>
+<script src="./index_files/angular.min.js"></script>
+<script src="./index_files/roundProgress.min.js"></script>
+<script src="./index_files/app.js"></script>
+</body></html>
