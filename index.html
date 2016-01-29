@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,700italic,700,600italic' rel='stylesheet' type='text/css'>
 	<link href='font-awesome-4.1.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 </head>
 <body ng-controller="myController">
 	<nav class="navbar navbar-default navbar-inverse navbar-fixed-top text-center">
@@ -12,7 +13,7 @@
 			<ul class="nav navbar-nav" style="float: none; margin-left: auto; margin-right: auto">
 				<li class="current">
 					<!-- Highlighted menu for current page -->
-					<a href="" id="homenav">Control Panel</a>
+					<a href="" id="homenav">Kyngster</a>
 				</li>
 			</ul>
 		</nav>
@@ -23,56 +24,121 @@
 			<div class="outside-fan" style="margin-left: auto; margin-right: auto">
 				<div ng-class="{'rotating': isHeating}" class="inside-fan"></div>
 			</div><br><br>
-			<button class="btn btn-lg btn-default btn-danger" ng-click="kill = !kill; isHeating = false;" ng-show="!kill">KILL</button>
-			<button class="btn btn-lg btn-default btn-primary" ng-click="kill = !kill; isHeating = true;" ng-show="kill">RESET</button>
+			<button class="btn btn-lg btn-default btn-danger" ng-click="kill = !kill; isHeating = false;" ng-show="!kill">DISABLE</button>
+			<button class="btn btn-lg btn-default btn-primary" ng-click="kill = !kill; isHeating = true;" ng-show="kill">ENABLE</button>
 		</div>
-		<div class="col-lg-2 col-md-3 col-sm-4 tile tile-blue text-center">
-			<div round-progress
-					max="250"
-					current="current"
-					color="#72CDD4"
-					bgcolor="#222"
-					radius="100"
-					stroke="10"
-					semi="false"
-					rounded="false"
-					clockwise="false"
-					responsive="false"
-					duration="800"
-					animation="easeInOutQuart"
-					animation-delay="0">
+		<!--<div class="flip-container" ng-class="{'turned': turnedAround}">-->
+			<!--<div class="flipper">-->
+				<!--<div class="front">-->
+					<!--<div class="col-lg-2 col-md-3 col-sm-4 tile tile-blue text-center">-->
+						<!--<div round-progress-->
+							 <!--max="250"-->
+							 <!--current="current"-->
+							 <!--color="#72CDD4"-->
+							 <!--bgcolor="#ddd"-->
+							 <!--radius="100"-->
+							 <!--stroke="10"-->
+							 <!--semi="false"-->
+							 <!--rounded="false"-->
+							 <!--clockwise="false"-->
+							 <!--responsive="false"-->
+							 <!--duration="800"-->
+							 <!--animation="easeInOutQuart"-->
+							 <!--animation-delay="0">-->
 
-			</div> <br>
-			<div class="temp" style="position: absolute; top: 50%; bottom: auto; left: 50%; transform: translateY(-50%) translateX(-50%);"><span class="temp-text">{{current}}&deg;</span> <div ng-class="{'flame': isHeating, 'no-flame': !isHeating}"></div></div>
+						<!--</div> <br>-->
+						<!--<div class="temp" style="position: absolute; top: 50%; bottom: auto; left: 50%; transform: translateY(-50%) translateX(-50%);"><span class="temp-text">{{current}}&deg;</span> <div ng-class="{'flame': isHeating, 'no-flame': !isHeating}"></div></div>-->
+						<!--<div style="position: absolute; right: 0; bottom: 0"><i class="fa fa-cog"></i></div>-->
+				<!--</div>-->
+				<!--<div class="back">-->
+					<!--<h1>Settings</h1>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+		<div class="col-lg-2 col-md-3 col-sm-4 tile tile-blue text-center">
+			<div class="flip-container" ng-class="{'turned': turnedAround}">
+				<div class="flipper">
+					<div class="front">
+						<div round-progress
+								max="220"
+								current="current"
+								color="{{tempColor}}"
+								bgcolor="#ddd"
+								radius="100"
+								stroke="10"
+								semi="false"
+								rounded="false"
+								clockwise="false"
+								responsive="false"
+								duration="800"
+								animation="easeInOutQuart"
+								animation-delay="0">
+
+						</div>
+						<div class="temp" style="position: absolute; top: 50%; bottom: auto; left: 50%; transform: translateY(-50%) translateX(-50%);">
+							<label style="color: #c0c0c0;  font-weight: 400; margin-bottom: 0"><small>Target: {{settings.targetTemp}}&deg;</small></label>
+							<span class="temp-text">{{current}}&deg;</span>
+							<div ng-class="{'flame': isHeating, 'no-flame': !isHeating}"></div>
+						</div>
+						<!--<div style="position: absolute; right: 0; bottom: 0; padding: 10px; cursor: pointer" ng-click="turnedAround = true"><i class="fa fa-2x fa-cog"></i></div>-->
+					</div>
+					<div class="back">
+						<h5 style="margin-top: 5px">SETTINGS</h5>
+						<form class="form-group" id="burningSettings" ng-submit="turnedAround = false;">
+							<div class="form-group col-sm-6">
+								<label><small>Target Temp</small></label>
+								<input type="number" ng-model="settings.targetTemp" class="form-control text-center" placeholder="130&deg;">
+							</div>
+							<div class="form-group col-sm-6">
+								<label><small>Threshold</small></label>
+								<input type="number" ng-model="settings.threshold" class="form-control text-center" placeholder="50&deg;">
+							</div>
+							<div class="form-group col-sm-6">
+								<label><small>Kill Threshold</small></label>
+								<input type="number" ng-model="settings.killThreshold" class="form-control text-center" placeholder="110&deg;">
+							</div>
+							<div class="form-group col-sm-6">
+								<label><small>Update Key</small></label>
+								<input type="password" ng-model="settings.updateKey" class="form-control text-center" placeholder="PIN">
+							</div>
+							<div class="clearfix"></div>
+							<button type="reset" ng-click="settings = {}" class="btn btn-default" style="margin-bottom: 10px; margin-right: 10px;">Reset</button>
+							<button type="submit" class="btn btn-success" style="margin-bottom: 10px; margin-right: 10px;">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div style="position: absolute; right: 0; bottom: 0; padding: 10px; cursor: pointer" ng-show="!turnedAround" ng-click="turnedAround = true"><i class="fa fa-2x fa-cog"></i></div>
+			<div style="position: absolute; right: 0; bottom: 0; padding: 10px; cursor: pointer" ng-show="turnedAround" ng-click="turnedAround = false"><i class="fa fa-2x fa-times"></i></div>
 		</div>
 	</div>
 	<div class="clearfix"></div>
-	<div class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-3 col-sm-offset-2 col-sm-4" style="padding-left: 0; padding-right: 0">
-		<button class="btn btn-primary settings text-center" ng-click="showSettings = true;" ng-show="!showSettings">
-			<i class="fa fa-2x fa-cog"></i>
-		</button>
-		<div ng-show="showSettings" class="fields">
-			<span class="close" style="padding-right: 5px" ng-click="showSettings = false;">&times;</span>
-			<br>
-			<form class="form-group" id="burningSettings">
-				<div class="form-group col-sm-3">
-					<input type="number" ng-model="settings.targetTemp" class="form-control"  placeholder="Target Temperature">
-				</div>
-				<div class="form-group col-sm-3">
-					<input type="number" ng-model="settings.threshold" class="form-control" placeholder="Threshold">
-				</div>
-				<div class="form-group col-sm-3">
-					<input type="number" ng-model="settings.killThreshold" class="form-control" placeholder="Kill Threshold">
-				</div>
-				<div class="form-group col-sm-3">
-					<input type="password" ng-model="settings.updateKey" class="form-control" placeholder="Update Key">
-				</div>
-				<div class="clearfix"></div>
-				<button type="submit" class="btn btn-default pull-right" style="margin-bottom: 10px; margin-right: 10px;">Submit</button>
-			</form>
-			<div class="clearfix"></div>
-		</div>
-	</div>
+	<!--<div class="col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-3 col-sm-offset-2 col-sm-4" style="padding-left: 0; padding-right: 0">-->
+		<!--<button class="btn btn-primary settings text-center" ng-click="showSettings = true;" ng-show="!showSettings">-->
+			<!--<i class="fa fa-2x fa-cog"></i>-->
+		<!--</button>-->
+		<!--<div ng-show="showSettings" class="fields">-->
+			<!--<span class="close" style="padding-right: 5px" ng-click="showSettings = false;">&times;</span>-->
+			<!--<br>-->
+			<!--<form class="form-group" id="burningSettings">-->
+				<!--<div class="form-group col-sm-3">-->
+					<!--<input type="number" ng-model="settings.targetTemp" class="form-control"  placeholder="Target Temperature">-->
+				<!--</div>-->
+				<!--<div class="form-group col-sm-3">-->
+					<!--<input type="number" ng-model="settings.threshold" class="form-control" placeholder="Threshold">-->
+				<!--</div>-->
+				<!--<div class="form-group col-sm-3">-->
+					<!--<input type="number" ng-model="settings.killThreshold" class="form-control" placeholder="Kill Threshold">-->
+				<!--</div>-->
+				<!--<div class="form-group col-sm-3">-->
+					<!--<input type="password" ng-model="settings.updateKey" class="form-control" placeholder="Update Key">-->
+				<!--</div>-->
+				<!--<div class="clearfix"></div>-->
+				<!--<button type="submit" class="btn btn-default pull-right" style="margin-bottom: 10px; margin-right: 10px;">Submit</button>-->
+			<!--</form>-->
+			<!--<div class="clearfix"></div>-->
+		<!--</div>-->
+	<!--</div>-->
 
 
 

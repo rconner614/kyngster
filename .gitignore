@@ -1,0 +1,6 @@
+public/vendor
+node_modules
+.idea
+less/*.css
+less/*/*.css
+bower_components
